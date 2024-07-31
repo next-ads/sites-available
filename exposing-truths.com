@@ -1,0 +1,87 @@
+server {
+    server_name exposing-truths.com www.exposing-truths.com unraveling-mysteries.com www.unraveling-mysteries.com unveil-revelations.com www.unveil-revelations.com;
+    client_max_body_size 5000M;
+
+    location / {
+        root /var/www/html/truesterone/;
+        index index.php index.html;
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ \.php$ {
+        root /var/www/html/truesterone/;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi.conf;
+    }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+    location = /favicon.ico {
+        log_not_found off;
+        access_log off;
+    }
+
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/unraveling-mysteries.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/unraveling-mysteries.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    if ($host = www.unveil-revelations.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = unveil-revelations.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = www.exposing-truths.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = exposing-truths.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = www.unraveling-mysteries.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = unraveling-mysteries.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name exposing-truths.com www.exposing-truths.com unraveling-mysteries.com www.unraveling-mysteries.com unveil-revelations.com www.unveil-revelations.com;
+    return 404; # managed by Certbot
+
+ 
+
+
+
+
+
+
+
+
+
+
+}
