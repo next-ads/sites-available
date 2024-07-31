@@ -14,7 +14,7 @@ server {
                 mystery-revealer.com www.mystery-revealer.com newrealtrick.com www.newrealtrick.com unveil-revelations.com www.unveil-revelations.com 
                 unraveling-mysteries.com www.unraveling-mysteries.com unraveling-secrets.com www.unraveling-secrets.com unveiling-hidden.com www.unveiling-hidden.com 
                 unveiling-truths.com www.unveiling-truths.com;
-    
+
     client_max_body_size 5000M;
 
     location / {
@@ -47,15 +47,14 @@ server {
     }
 
     listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/unveiling-hidden.com/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/unveiling-hidden.com/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/unraveling-mysteries.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/unraveling-mysteries.com/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-
 }
 
 server {
-    if ($host = www.unveil-revelations.com) {
+        if ($host = www.unveil-revelations.com) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
@@ -418,4 +417,3 @@ server {
                 unveiling-truths.com www.unveiling-truths.com;
     return 404; # managed by Certbot
 }
-
